@@ -31,8 +31,8 @@ class Patient(BaseModel):
     def transform_name(cls, value):
         return value.upper()
 
-    # 3. Validate the patient's age before Pydantic parses it
-    @field_validator("age", mode="before")
+    # 3. Validate the patient's age after Pydantic parses it
+    @field_validator("age", mode="after")
     @classmethod
     def validate_age(cls, value):
         if isinstance(value, bool):
